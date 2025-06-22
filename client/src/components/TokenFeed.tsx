@@ -202,8 +202,8 @@ const EmptyText = styled.p`
 const TokenFeed = forwardRef<HTMLDivElement, TokenFeedProps>(
   ({ tokens, loading, error, autoScroll }, ref) => {
     const totalMarketCap = tokens.reduce((sum, token) => sum + token.marketCap, 0);
-    const bullishCount = tokens.filter(token => token.performanceChange > 0).length;
-    const bearishCount = tokens.filter(token => token.performanceChange < 0).length;
+    const bullishCount = tokens.filter(token => (token.performanceChange || 0) > 0).length;
+    const bearishCount = tokens.filter(token => (token.performanceChange || 0) < 0).length;
     const neutralCount = tokens.length - bullishCount - bearishCount;
 
     const formatMarketCap = (value: number) => {

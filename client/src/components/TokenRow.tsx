@@ -267,7 +267,7 @@ const TokenRow: React.FC<TokenRowProps> = ({ token, index }) => {
 
   const getTimeAgo = () => {
     const now = new Date();
-    const created = new Date(token.createdAt);
+    const created = new Date(token.createdAt || new Date());
     const diff = now.getTime() - created.getTime();
     
     const seconds = Math.floor(diff / 1000);
@@ -287,11 +287,13 @@ const TokenRow: React.FC<TokenRowProps> = ({ token, index }) => {
     return <Minus size={16} />;
   };
 
-  const isHighlighted = Math.abs(token.performanceChange) >= 5;
+  const performanceChange = token.performanceChange || 0;
+  const category = token.category || 'Unknown';
+  const isHighlighted = Math.abs(performanceChange) >= 5;
 
   return (
     <TableRow
-      performance={token.performanceChange}
+      performance={performanceChange}
       isHighlighted={isHighlighted}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -308,7 +310,7 @@ const TokenRow: React.FC<TokenRowProps> = ({ token, index }) => {
           exit={{ opacity: 0, scale: 0 }}
         >
           <Star size={12} />
-          {formatPerformance(token.performanceChange)}
+          {formatPerformance(performanceChange)}
         </HighlightBadge>
       )}
       
@@ -325,8 +327,8 @@ const TokenRow: React.FC<TokenRowProps> = ({ token, index }) => {
       </TableCell>
 
       <TableCell>
-        <CategoryBadge category={token.category}>
-          {token.category.replace(' Box', '')}
+        <CategoryBadge category={category}>
+          {category.replace(' Box', '')}
         </CategoryBadge>
       </TableCell>
 
@@ -338,11 +340,11 @@ const TokenRow: React.FC<TokenRowProps> = ({ token, index }) => {
 
       <TableCell>
         <PerformanceContainer>
-          <PerformanceIcon value={token.performanceChange}>
-            {getPerformanceIcon(token.performanceChange)}
+          <PerformanceIcon value={performanceChange}>
+            {getPerformanceIcon(performanceChange)}
           </PerformanceIcon>
-          <PerformanceValue value={token.performanceChange}>
-            {formatPerformance(token.performanceChange)}
+          <PerformanceValue value={performanceChange}>
+            {formatPerformance(performanceChange)}
           </PerformanceValue>
         </PerformanceContainer>
       </TableCell>
