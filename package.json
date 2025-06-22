@@ -1,0 +1,39 @@
+{
+  "name": "feed-project",
+  "version": "1.0.0",
+  "description": "Advanced Solana Token Feed with Real-time Updates",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run kill && timeout /t 3 /nobreak >nul && concurrently \"cd server && node index.js\" \"cd client && npm start\" --names \"SERVER,CLIENT\" --prefix-colors \"blue,green\"",
+    "start-clean": "node scripts/start-clean.js",
+    "dev": "npm run start-clean",
+    "kill": "taskkill /f /im node.exe 2>nul || echo No Node processes to kill",
+    "kill-ports": "node scripts/kill-ports.js",
+    "check-ports": "node scripts/check-ports.js",
+    "help": "node scripts/help.js",
+    "setup": "npm install && cd client && npm install && cd ../server && npm install",
+    "seed": "cd server && node scripts/populateDatabase.js",
+    "populate": "cd server && set MONGODB_URI=mongodb://127.0.0.1:27017/feed && node scripts/populateFeedData.js",
+    "build": "cd client && npm run build",
+    "server": "cd server && node index.js",
+    "client": "cd client && npm start"
+  },
+  "keywords": [
+    "solana",
+    "crypto",
+    "feed",
+    "real-time",
+    "web3",
+    "mongodb",
+    "react"
+  ],
+  "author": "FEED Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}

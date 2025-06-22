@@ -1,0 +1,114 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9945ff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+/* Selection Styling */
+::selection {
+  background: #9945ff;
+  color: #ffffff;
+}
+
+/* Focus Outline */
+*:focus {
+  outline: 2px solid #9945ff;
+  outline-offset: 2px;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Loading Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+} 
