@@ -316,7 +316,7 @@ const TokenRow: React.FC<TokenRowProps> = ({ token, index }) => {
       
       <TableCell>
         <TokenInfo>
-          <TokenIcon verified={token.isVerified}>
+          <TokenIcon verified={token.isVerified || false}>
             {token.symbol.substring(0, 2)}
           </TokenIcon>
           <TokenDetails>
